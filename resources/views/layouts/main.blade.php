@@ -13,7 +13,7 @@
 </head>
 <body>
     @include('partial.navbar')
-    {{-- <script src="../path/to/flowbite/dist/flowbite.min.js"></script> --}}
+    @include('partial.footer')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
 </html>

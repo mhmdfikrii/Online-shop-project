@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Index
 Route::get('/', [IndexController::class, 'index'])->middleware('guest');
+
+// Login
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest');

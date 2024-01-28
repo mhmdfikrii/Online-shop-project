@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\dashboard\AlamatController;
+use App\Http\Controllers\dashboard\DashboardController;
+use App\Http\Controllers\dashboard\DetailUsersController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +19,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Index
-Route::get('/', [IndexController::class, 'index'])->middleware('guest');
+Route::get('/', [IndexController::class, 'index'])->name('home');
 
 // Login
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/register', [LoginController::class, 'store'])->name('register');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
+// Detail Users
+Route::get('/users_details/{account}', [DetailUsersController::class, 'index'])->middleware('auth');
+Route::put('/users_details/{account}', [DetailUsersController::class, 'updateUser'])->middleware('auth');
+Route::get('/check-username/{username}', [DetailUsersController::class, 'checkUsernameAvailability'])->middleware('auth');
+
+
+// Alamat Users
+Route::get('/alamat', [AlamatController::class, 'index'])->middleware('auth')->name('Alamat');
+Route::get('/tambah_alamat', [AlamatController::class, 'create'])->middleware('auth')->name('tambah alamat');
+Route::post('/tambah_alamat', [AlamatController::class, 'store'])->middleware('auth');
+Route::get('/edit_alamat/{id}', [AlamatController::class, 'edit'])->middleware('auth')->name('edit alamat');
+Route::put('/edit_alamat/{id}', [AlamatController::class, 'update'])->middleware('auth')->name('update alamat');
+Route::delete('/alamat/{id}', [AlamatController::class, 'destroy'])->middleware('auth')->name('delete alamat');

@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\dashboard;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+use Carbon\Carbon;
 
-class DetailUsersController extends Controller
+class AdminController extends Controller
 {
     public function index(User $user, $token)
     {
-
         $user = User::where('token', $token)->first();
         User::where('token', $token)->first();
 
@@ -21,16 +20,16 @@ class DetailUsersController extends Controller
             abort(403, 'Unauthorized action.');
         }
         // dd($user->first_name);
-        return view('dashboard.detail_profile.index', [
+        return view('admin.detail_profile.index', [
             'title' => 'Users Information',
             'user' => $user
         ]);
     }
 
-    public function ViewChangePassword(User $user, $token)
+    public function ViewAdminChangePassword(User $user, $token)
     {
         if (auth()->user()->check == 0) {
-            return redirect()->intended('/users_details/' . auth()->user()->token);
+            return redirect()->intended('/admin_details/' . auth()->user()->token);
         }
 
         $user = User::where('token', $token)->first();
@@ -40,13 +39,13 @@ class DetailUsersController extends Controller
             abort(403, 'Unauthorized action.');
         }
         // dd($user->first_name);
-        return view('dashboard.detail_profile.change-password', [
+        return view('admin.detail_profile.change-password', [
             'title' => 'Keamanan Akun',
             'user' => $user
         ]);
     }
 
-    public function ChangePassword(Request $request)
+    public function AdminChangePassword(Request $request)
     {
         try {
             $request->merge(['id' => auth()->user()->id]);
@@ -67,7 +66,7 @@ class DetailUsersController extends Controller
             // Validasi password lama
             if (!empty($request->old_password)) {
                 if (!Hash::check($request->old_password, auth()->user()->password)) {
-                    return redirect('/account-scurity/' . auth()->user()->token)->with('fail', 'Gagal Mengupdate Data, Silahkan Cek kembali password/email anda dengan benar');
+                    return redirect('/admin-account-scurity/' . auth()->user()->token)->with('fail', 'Gagal Mengupdate Data, Silahkan Cek kembali password/email anda dengan benar');
                 }
                 unset($validatedData['old_password']);
             }
@@ -75,17 +74,15 @@ class DetailUsersController extends Controller
             User::where('id', $request->id)
                 ->update($validatedData);
 
-            return redirect('/account-scurity/' . auth()->user()->token)->with('success', 'Password Akun berhasil diganti.');
+            return redirect('/admin-account-scurity/' . auth()->user()->token)->with('success', 'Password Akun berhasil diganti.');
         } catch (\Exception $e) {
             // ngambil alert fail berdasrkan error
             // return redirect('/account-scurity/' . auth()->user()->token)->with('fail', 'Error: ' . $e->getMessage());
-            return redirect('/account-scurity/' . auth()->user()->token)->with('fail', 'Gagal Mengupdate Data, Silahkan Cek kembali password/email anda dengan benar');
+            return redirect('/admin-account-scurity/' . auth()->user()->token)->with('fail', 'Gagal Mengupdate Data, Silahkan Cek kembali password/email anda dengan benar');
         }
     }
 
-
-
-    public function updateUser(Request $request, $token)
+    public function updateAdmin(Request $request, $token)
     {
         User::with('user')->where('token', $token)->first();
         $request->merge(['id' => auth()->user()->id]);
@@ -117,22 +114,11 @@ class DetailUsersController extends Controller
 
             $token = auth()->user()->token;
             // dd($validatedData);
-            return redirect('/users_details/' . $token)->with('success', 'Data Anda Berhasil di Simpan');
-            // return redirect()->intended('/users_details/' . $token);
+            return redirect('/admin_details/' . $token)->with('success', 'Data Anda Berhasil di Simpan');
+            // return redirect()->intended('/admin_details/' . $token);
         } catch (ValidationException $e) {
             $errors = $e->validator->errors();
             return redirect()->back()->withErrors($errors)->with(['fail' => 'Gagal Simpan Data, Silahkan Cek kembali data Anda']);
         }
-    }
-
-    public function checkUsernameAvailability($username)
-    {
-        $user = User::where('username', $username)->first();
-
-        if ($user) {
-            return response()->json(['available' => false]);
-        }
-
-        return response()->json(['available' => true]);
     }
 }

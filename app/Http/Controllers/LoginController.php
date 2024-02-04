@@ -31,6 +31,9 @@ class LoginController extends Controller
             if (auth()->user()->check == 0) {
                 return redirect()->intended('/users_details/' . $token);
             }
+            if (auth()->user()->level == 'admin') {
+                return redirect()->intended('/dashboard-admin');
+            }
             return redirect()->intended('/dashboard');
         }
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\dashboard\AlamatController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\DetailUsersController;
@@ -27,7 +29,7 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/register', [LoginController::class, 'store'])->name('register');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Dashboard
+// User Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 // Detail Users
@@ -45,3 +47,12 @@ Route::post('/tambah_alamat', [AlamatController::class, 'store'])->middleware('a
 Route::get('/edit_alamat/{id}', [AlamatController::class, 'edit'])->middleware('auth')->name('edit alamat');
 Route::put('/edit_alamat/{id}', [AlamatController::class, 'update'])->middleware('auth')->name('update alamat');
 Route::delete('/alamat/{id}', [AlamatController::class, 'destroy'])->middleware('auth')->name('delete alamat');
+
+// Admin Dashboard
+Route::get('/dashboard-admin', [AdminDashboardController::class, 'index'])->middleware('admin');
+
+// Admin
+Route::get('/admin_details/{account}', [AdminController::class, 'index'])->middleware('admin');
+Route::put('/admin_details/{account}', [AdminController::class, 'updateAdmin'])->middleware('admin');
+Route::get('/admin-account-scurity/{account}', [AdminController::class, 'ViewAdminChangePassword'])->middleware('admin');
+Route::put('/admin-account-scurity/{account}', [AdminController::class, 'AdminChangePassword'])->middleware('admin');

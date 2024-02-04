@@ -30,7 +30,7 @@
     <ul class="space-y-2 font-medium">
       <li>
         <a
-          href="/dashboard"
+          href="/dashboard-admin"
           class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
         >
           <svg
@@ -90,25 +90,17 @@
         <ul id="dropdown-example" class="hidden py-2 space-y-2">
           <li>
             <a
-              href="/users_details/{{ auth()->user()->token }}"
+              href="/admin_details/{{ auth()->user()->token }}"
               class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >Akun</a
             >
           </li>
           <li>
             <a
-              href="/account-scurity/{{ auth()->user()->token }}"
+              href="/admin-account-scurity/{{ auth()->user()->token }}"
               class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >Keamanan Akun</a
             >
-          </li>
-          <li>
-            {{-- @if(auth()->user()->level != 'admin') --}}
-            <a
-              href="/alamat"
-              class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-            >Alamat</a>
-          {{-- @endif --}}
           </li>
         </ul>
       </li>

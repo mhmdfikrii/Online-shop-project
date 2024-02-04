@@ -17,6 +17,9 @@ class AlamatController extends Controller
      */
     public function index(Alamat $userAddresses)
     {
+        if (auth()->user()->level == 'admin') {
+            abort(403);
+        }
         // Mengambil alamat pengguna yang sedang terotentikasi
         if (auth()->user()->check == 0) {
             return redirect()->intended('/users_details/' . auth()->user()->token);
@@ -37,6 +40,9 @@ class AlamatController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->level == 'admin') {
+            abort(403);
+        }
         return view('dashboard.alamat_users.create', [
             'title' => 'Tambah Alamat',
         ]);
@@ -88,6 +94,9 @@ class AlamatController extends Controller
     public function edit(Alamat $userAddresses, $id)
     {
 
+        if (auth()->user()->level == 'admin') {
+            abort(403);
+        }
         // Cek Apakah id Usernya sama dengan yang login?
         $userAddresses = Alamat::with('user')->where('id', $id)->first();
         if ($userAddresses === null || $userAddresses->user === null) {

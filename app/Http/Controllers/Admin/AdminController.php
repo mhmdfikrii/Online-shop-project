@@ -121,4 +121,15 @@ class AdminController extends Controller
             return redirect()->back()->withErrors($errors)->with(['fail' => 'Gagal Simpan Data, Silahkan Cek kembali data Anda']);
         }
     }
+
+    public function checkUsernameAvailability($username)
+    {
+        $user = User::where('username', $username)->first();
+
+        if ($user) {
+            return response()->json(['available' => false]);
+        }
+
+        return response()->json(['available' => true]);
+    }
 }

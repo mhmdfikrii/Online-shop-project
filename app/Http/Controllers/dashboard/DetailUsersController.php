@@ -13,7 +13,6 @@ class DetailUsersController extends Controller
 {
     public function index(User $user, $token)
     {
-
         $user = User::where('token', $token)->first();
         User::where('token', $token)->first();
 

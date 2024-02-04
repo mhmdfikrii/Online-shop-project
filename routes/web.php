@@ -30,23 +30,22 @@ Route::post('/register', [LoginController::class, 'store'])->name('register');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // User Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('user');
 
 // Detail Users
-Route::get('/users_details/{account}', [DetailUsersController::class, 'index'])->middleware('auth');
-Route::get('/account-scurity/{account}', [DetailUsersController::class, 'ViewChangePassword'])->middleware('auth');
-Route::put('/account-scurity/{account}', [DetailUsersController::class, 'ChangePassword'])->middleware('auth');
-Route::put('/users_details/{account}', [DetailUsersController::class, 'updateUser'])->middleware('auth');
-Route::get('/check-username/{username}', [DetailUsersController::class, 'checkUsernameAvailability'])->middleware('auth');
-
+Route::get('/users_details/{account}', [DetailUsersController::class, 'index'])->middleware('user');
+Route::get('/account-scurity/{account}', [DetailUsersController::class, 'ViewChangePassword'])->middleware('user');
+Route::put('/account-scurity/{account}', [DetailUsersController::class, 'ChangePassword'])->middleware('user');
+Route::put('/users_details/{account}', [DetailUsersController::class, 'updateUser'])->middleware('user');
+Route::get('/check-username/{username}', [DetailUsersController::class, 'checkUsernameAvailability'])->middleware('user');
 
 // Alamat Users
-Route::get('/alamat', [AlamatController::class, 'index'])->middleware('auth')->name('Alamat');
-Route::get('/tambah_alamat', [AlamatController::class, 'create'])->middleware('auth')->name('tambah alamat');
-Route::post('/tambah_alamat', [AlamatController::class, 'store'])->middleware('auth');
-Route::get('/edit_alamat/{id}', [AlamatController::class, 'edit'])->middleware('auth')->name('edit alamat');
-Route::put('/edit_alamat/{id}', [AlamatController::class, 'update'])->middleware('auth')->name('update alamat');
-Route::delete('/alamat/{id}', [AlamatController::class, 'destroy'])->middleware('auth')->name('delete alamat');
+Route::get('/alamat', [AlamatController::class, 'index'])->middleware('user')->name('Alamat');
+Route::get('/tambah_alamat', [AlamatController::class, 'create'])->middleware('user')->name('tambah alamat');
+Route::post('/tambah_alamat', [AlamatController::class, 'store'])->middleware('user');
+Route::get('/edit_alamat/{id}', [AlamatController::class, 'edit'])->middleware('user')->name('edit alamat');
+Route::put('/edit_alamat/{id}', [AlamatController::class, 'update'])->middleware('user')->name('update alamat');
+Route::delete('/alamat/{id}', [AlamatController::class, 'destroy'])->middleware('user')->name('delete alamat');
 
 // Admin Dashboard
 Route::get('/dashboard-admin', [AdminDashboardController::class, 'index'])->middleware('admin');
@@ -56,3 +55,4 @@ Route::get('/admin_details/{account}', [AdminController::class, 'index'])->middl
 Route::put('/admin_details/{account}', [AdminController::class, 'updateAdmin'])->middleware('admin');
 Route::get('/admin-account-scurity/{account}', [AdminController::class, 'ViewAdminChangePassword'])->middleware('admin');
 Route::put('/admin-account-scurity/{account}', [AdminController::class, 'AdminChangePassword'])->middleware('admin');
+Route::get('/check-username/{username}', [AdminController::class, 'checkUsernameAvailability'])->middleware('admin');

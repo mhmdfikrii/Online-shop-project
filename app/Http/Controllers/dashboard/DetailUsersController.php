@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Alamat;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class DetailUsersController extends Controller
@@ -25,6 +26,62 @@ class DetailUsersController extends Controller
             'title' => 'Users Information',
             'user' => $user
         ]);
+    }
+
+    public function ViewChangePassword(User $user, $token)
+    {
+        if (auth()->user()->check == 0) {
+            return redirect()->intended('/users_details/' . auth()->user()->token);
+        }
+
+        $user = User::where('token', $token)->first();
+        User::where('token', $token)->first();
+
+        if (!$user || auth()->user()->id !== $user->id) {
+            abort(403, 'Unauthorized action.');
+        }
+        // dd($user->first_name);
+        return view('dashboard.detail_profile.change-password', [
+            'title' => 'Keamanan Akun',
+            'user' => $user
+        ]);
+    }
+
+    public function ChangePassword(Request $request)
+    {
+        try {
+            $request->merge(['id' => auth()->user()->id]);
+            $rules = [
+                'id' => 'required',
+                'email' => 'required|email:dns|unique:users,email,' . auth()->user()->id,
+                'password' => 'nullable|min:5|required_with:confirm_password|same:confirm_password',
+            ];
+            $validatedData = $request->validate($rules);
+
+            // Hashing password baru jika ada perubahan
+            if (!empty($validatedData['password'])) {
+                $validatedData['password'] = Hash::make($validatedData['password']);
+            } else {
+                unset($validatedData['password']);
+            }
+
+            // Validasi password lama
+            if (!empty($request->old_password)) {
+                if (!Hash::check($request->old_password, auth()->user()->password)) {
+                    return redirect('/account-scurity/' . auth()->user()->token)->with('fail', 'Gagal Mengupdate Data, Silahkan Cek kembali password/email anda dengan benar');
+                }
+                unset($validatedData['old_password']);
+            }
+
+            User::where('id', $request->id)
+                ->update($validatedData);
+
+            return redirect('/account-scurity/' . auth()->user()->token)->with('success', 'Password Akun berhasil diganti.');
+        } catch (\Exception $e) {
+            // ngambil alert fail berdasrkan error
+            // return redirect('/account-scurity/' . auth()->user()->token)->with('fail', 'Error: ' . $e->getMessage());
+            return redirect('/account-scurity/' . auth()->user()->token)->with('fail', 'Gagal Mengupdate Data, Silahkan Cek kembali password/email anda dengan benar');
+        }
     }
 
 
@@ -63,10 +120,11 @@ class DetailUsersController extends Controller
 
             $token = auth()->user()->token;
             // dd($validatedData);
-            return redirect()->intended('/users_details/' . $token);
+            return redirect('/users_details/' . $token)->with('success', 'Data Anda Berhasil di Simpan');
+            // return redirect()->intended('/users_details/' . $token);
         } catch (ValidationException $e) {
             $errors = $e->validator->errors();
-            return redirect()->back()->withErrors($errors)->with(['GagalUpdate' => 'Gagal Mengupdate Data, Silahkan Cek kembali data Anda']);
+            return redirect()->back()->withErrors($errors)->with(['fail' => 'Gagal Simpan Data, Silahkan Cek kembali data Anda']);
         }
     }
 

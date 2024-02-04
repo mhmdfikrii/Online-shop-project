@@ -32,6 +32,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 
 // Detail Users
 Route::get('/users_details/{account}', [DetailUsersController::class, 'index'])->middleware('auth');
+Route::get('/account-scurity/{account}', [DetailUsersController::class, 'ViewChangePassword'])->middleware('auth');
+Route::put('/account-scurity/{account}', [DetailUsersController::class, 'ChangePassword'])->middleware('auth');
 Route::put('/users_details/{account}', [DetailUsersController::class, 'updateUser'])->middleware('auth');
 Route::get('/check-username/{username}', [DetailUsersController::class, 'checkUsernameAvailability'])->middleware('auth');
 

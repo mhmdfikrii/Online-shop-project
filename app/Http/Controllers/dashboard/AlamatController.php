@@ -66,11 +66,10 @@ class AlamatController extends Controller
 
             Alamat::create($validatedData);
 
-            return redirect()->intended('/dashboard');
-            // return redirect('/dashboard')->with('Berhasil', 'Update Data Anda berhasil');
+            return redirect('/alamat')->with('success', 'Alamat berhasil ditambahkan');
         } catch (ValidationException $e) {
             $errors = $e->validator->errors(); {
-                return redirect()->back()->withErrors($errors)->with(['GagalUpdate' => 'Gagal Mengupdate Data, Silahkan Cek kembali data Anda']);
+                return redirect()->back()->withErrors($errors)->with(['fail' => 'Periksa Kembali Data Alamat Anda']);
             }
         }
     }
@@ -134,11 +133,11 @@ class AlamatController extends Controller
             // dd($validatedData);
             Alamat::where('id', $alamat->id)->update($validatedData);
 
-            return redirect('/dashboard')->with('Berhasil', 'Update Data Anda berhasil');
+            return redirect('/alamat')->with('success', 'Update Data Alamat Anda berhasil');
         } catch (ValidationException $e) {
             $errors = $e->validator->errors();
             // dd($errors);
-            return redirect()->back()->withErrors($errors)->with(['GagalUpdate' => 'Gagal Mengupdate Data, Silahkan Cek kembali data Anda']);
+            return redirect()->back()->withErrors($errors)->with(['fail' => 'Periksa Kembali Data Alamat Anda']);
         }
     }
 
@@ -155,6 +154,6 @@ class AlamatController extends Controller
             abort(403);
         }
         Alamat::destroy($alamat->id);
-        return redirect('/dashboard')->with('Berhasil', 'Berhasil Hapus Data');
+        return redirect('/alamat')->with('success', 'Berhasil Hapus Data');
     }
 }

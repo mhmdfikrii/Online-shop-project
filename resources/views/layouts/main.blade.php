@@ -15,6 +15,7 @@
     @include('partial.navbar')
     @include('partial.footer')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/modal-regist.js') }}"></script>
+    <script src="{{ asset('js/logout-index.js') }}"></script>
 </body>
 </html>

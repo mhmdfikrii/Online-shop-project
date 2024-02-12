@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('tgllahir')->nullable();
             $table->string('umur')->nullable();
-            $table->integer('Saldo')->default(0);
             $table->uuid('token')->unique()->default(Str::uuid());
             $table->boolean('check')->default(0);
             $table->rememberToken();

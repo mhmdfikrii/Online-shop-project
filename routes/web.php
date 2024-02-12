@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\CategoryProductController;
+use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\dashboard\AlamatController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\DetailUsersController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
+use App\Models\CategoryProduct;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,9 +53,18 @@ Route::delete('/alamat/{id}', [AlamatController::class, 'destroy'])->middleware(
 // Admin Dashboard
 Route::get('/dashboard-admin', [AdminDashboardController::class, 'index'])->middleware('admin');
 
-// Admin
+// Admin Account
 Route::get('/admin_details/{account}', [AdminController::class, 'index'])->middleware('admin');
 Route::put('/admin_details/{account}', [AdminController::class, 'updateAdmin'])->middleware('admin');
 Route::get('/admin-account-scurity/{account}', [AdminController::class, 'ViewAdminChangePassword'])->middleware('admin');
 Route::put('/admin-account-scurity/{account}', [AdminController::class, 'AdminChangePassword'])->middleware('admin');
-Route::get('/check-username/{username}', [AdminController::class, 'checkUsernameAvailability'])->middleware('admin');
+
+// Product
+Route::get('/product_admin', [ProductController::class, 'index'])->middleware('admin');
+Route::get('/tambah-produk', [ProductController::class, 'create'])->middleware('admin');
+Route::post('/tambah-produk', [ProductController::class, 'store'])->middleware('admin');
+
+// Category Product
+Route::get('/create-category', [CategoryProductController::class, 'index'])->middleware('admin');
+Route::post('/create-category', [CategoryProductController::class, 'store'])->middleware('admin');
+Route::delete('/create-category/{id}', [CategoryProductController::class, 'destroy'])->middleware('admin');

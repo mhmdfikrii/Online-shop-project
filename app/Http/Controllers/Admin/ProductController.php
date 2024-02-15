@@ -50,7 +50,11 @@ class ProductController extends Controller
                 'body' => 'required',
                 'harga' => 'required',
                 'stock' => 'required',
-                'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Add validation for images
+                'image1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image4' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image5' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
             // Kode Unik Kode Produk Kombinasi (IdKategori+tanggal Create)
@@ -58,7 +62,6 @@ class ProductController extends Controller
             $currentTime = Carbon::now();
             $kodeProduk = $id_category . $currentTime->format('ymdHis');
             $validatedData['KodeProduct'] = $kodeProduk;
-            // Outputnya (Contoh 3240211161809, 3 id Kategori, 24 Tahun 2024, 02 Bulan, 11 Tanggal, dan 16 Jam,18 Menit, 09 Detik)
 
             // Gabungan Slug dan Kode Produk Menghindari kesamaan nama Slug sekaligus jadi Link produk
             $validatedData['slug'] .= '-' . $kodeProduk;
@@ -67,16 +70,15 @@ class ProductController extends Controller
 
             // Create folder for product images based on product slug
             $folderPath = 'product-images/' . $validatedData['slug'];
-            $folderPath = 'product-images/' . $validatedData['slug'];
             if (!File::exists($folderPath)) {
                 File::makeDirectory($folderPath, 0777, true);
             }
 
-            // Upload multiple images
             $images = [];
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
-                    if ($image->isValid()) { // Check if the file is valid
+            foreach (range(1, 5) as $index) {
+                if ($request->hasFile('image' . $index)) {
+                    $image = $request->file('image' . $index);
+                    if ($image->isValid()) {
                         $imageName = $image->getClientOriginalName();
                         $imagePath = $image->storeAs($folderPath, $imageName);
                         $images[] = $imagePath;
@@ -99,6 +101,8 @@ class ProductController extends Controller
             return redirect()->back()->withErrors($errors)->with(['fail' => 'Periksa Kembali Data Anda']);
         }
     }
+
+
 
 
 

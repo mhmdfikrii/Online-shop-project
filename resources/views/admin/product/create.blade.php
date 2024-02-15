@@ -77,18 +77,53 @@
                     </div>
                 </div>
 
-                <div class="rounded mb-4">
-    <label for="message" class="text-sm">Gambar Produk</label>
-    <div class="h-24 rounded drop-area mb-5" id="drop-area">
-        <input type="file" name="images[]" id="image" onchange="handleFiles(this.files)" required multiple accept="image/*">
-        <p class="mt-2">Drag and drop gambar di sini atau klik untuk memilih gambar</p>
-    </div>
-    <div id="preview-container" class="d-flex flex-nowrap mx-auto overflow-auto"></div>
-    <!-- Container untuk pratinjau gambar -->
-</div>
+                <div class="mb-3">
+                    <label for="kategori" class="text-sm">Gambar Produk (Wajib Minimal 2 Gambar)</label>
+                </div>              
+                <div class="flex overflow-x-auto gap-4">
+                    <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
+                        <label for="image1" class="text-sm flex justify-center items-center">Gambar Produk 1</label>
+                        <div class="absolute inset-0 flex justify-center items-center">
+                            <input name="image1" id="image1" type="file" required
+                                class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                        </div>
+                        <img id="preview1" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
+                    </div>
+                    <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
+                        <label for="image2" class="text-sm flex justify-center items-center">Gambar Produk 2</label>
+                        <div class="absolute inset-0 flex justify-center items-center">
+                            <input name="image2" id="image2" type="file" required
+                                class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                        </div>
+                        <img id="preview2" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
+                    </div>
+                    <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
+                        <label for="image3" class="text-sm flex justify-center items-center">Gambar Produk 3</label>
+                        <div class="absolute inset-0 flex justify-center items-center">
+                            <input name="image3" id="image3" type="file" 
+                                class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                        </div>
+                        <img id="preview3" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
+                    </div>
+                    <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
+                        <label for="image4" class="text-sm flex justify-center items-center">Gambar Produk 4</label>
+                        <div class="absolute inset-0 flex justify-center items-center">
+                            <input name="image4" id="image4" type="file" 
+                                class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                        </div>
+                        <img id="preview4" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
+                    </div>
+                    <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
+                        <label for="image5" class="text-sm flex justify-center items-center">Gambar Produk 5</label>
+                        <div class="absolute inset-0 flex justify-center items-center">
+                            <input name="image5" id="image5" type="file" 
+                                class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                        </div>
+                        <img id="preview5" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
+                    </div>
+                </div>
 
-
-                <div class="rounded mb-4">
+                <div class="rounded mb-4 mt-4">
                     <label for="message" class="text-sm">Keterangan Produk</label>
                     <div class="max-h-auto overflow-y-auto">
                         <input id="body" type="hidden" name="body" class="overflow-y-auto" />
@@ -125,125 +160,41 @@
     </div>
 </div>
 
+{{-- Preview Gambar --}}
 <script>
-    let filesToUpload = []; // Array untuk menyimpan file yang akan diunggah
+    // Function to handle file input change for each image
+    function handleImagePreview(input, previewId) {
+        const file = input.files[0];
+        const reader = new FileReader();
 
-    const dropArea = document.getElementById('drop-area');
-
-    dropArea.addEventListener('dragenter', (e) => {
-        e.preventDefault();
-        dropArea.classList.add('highlight');
-    });
-
-    dropArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-    });
-
-    dropArea.addEventListener('dragleave', () => {
-        dropArea.classList.remove('highlight');
-    });
-
-    dropArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropArea.classList.remove('highlight');
-        const files = e.dataTransfer.files;
-        handleFiles(files);
-    });
-
-    function handleFiles(files) {
-        const currentImagesCount = document.querySelectorAll('.img-container').length;
-        if (currentImagesCount + files.length > 5) {
-            alert('Anda hanya dapat mengunggah maksimal 5 gambar.');
-            return;
+        reader.onload = function (e) {
+            const preview = document.getElementById(previewId);
+            preview.src = e.target.result;
+            preview.classList.remove('hidden');
         }
 
-        const fileInput = document.getElementById('image');
-
-        // Simpan referensi file terkait dengan setiap gambar
-        const imageFiles = new Map();
-
-        // Menampilkan pratinjau untuk setiap gambar yang diunggah
-        const previewContainer = document.getElementById('preview-container');
-        for (const file of files) {
-            if (file.type.match('image.*')) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const imgContainer = document.createElement('div');
-                    imgContainer.className = 'img-container mx-2';
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.className = 'img-preview w-40 h-40';
-                    imgContainer.appendChild(img);
-
-                    // Simpan referensi file terkait dengan gambar
-                    imageFiles.set(imgContainer, file);
-
-                    // Tombol "x" untuk menghapus gambar
-                    const deleteButton = document.createElement('button');
-                    deleteButton.innerHTML = '<i class="bi bi-x-circle text-red-500"></i>';
-                    deleteButton.className = 'delete-btn btn btn-danger';
-                    deleteButton.onclick = function () {
-                        previewContainer.removeChild(imgContainer);
-                        // Hapus referensi file terkait dari array yang menyimpan file yang akan diunggah
-                        imageFiles.delete(imgContainer);
-                        // Perbarui input file dengan daftar file yang diperbarui
-                        updateFileInput();
-                    };
-                    imgContainer.appendChild(deleteButton);
-
-                    previewContainer.appendChild(imgContainer);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Fungsi untuk memperbarui input file dengan daftar file yang diperbarui
-        function updateFileInput() {
-            const updatedFiles = Array.from(imageFiles.values());
-            fileInput.files = new FileList(updatedFiles);
-        }
-
-        // Perbarui input file dengan daftar file yang diperbarui
-        updateFileInput();
+        reader.readAsDataURL(file);
     }
+
+    // Add event listeners for each image input
+    document.getElementById('image1').addEventListener('change', function (event) {
+        handleImagePreview(this, 'preview1');
+    });
+    document.getElementById('image2').addEventListener('change', function (event) {
+        handleImagePreview(this, 'preview2');
+    });
+    document.getElementById('image3').addEventListener('change', function (event) {
+        handleImagePreview(this, 'preview3');
+    });
+    document.getElementById('image4').addEventListener('change', function (event) {
+        handleImagePreview(this, 'preview4');
+    });
+    document.getElementById('image5').addEventListener('change', function (event) {
+        handleImagePreview(this, 'preview5');
+    });
 </script>
 
 
-<style>
-    .drop-area {
-        border: 2px dashed #ccc;
-        padding: 20px;
-        text-align: center;
-        cursor: pointer;
-    }
-
-    .highlight {
-        border-color: #007bff;
-    }
-
-    .img-preview {
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    .img-container {
-        display: inline-block;
-    }
-
-    .delete-btn {
-        margin-top: 5px;
-        padding: 0;
-        border: none;
-        background: none;
-        font-size: 18px;
-        cursor: pointer;
-    }
-
-    .overflow-auto {
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-</style>
 
 <script>
     function generateSlug() {

@@ -18,10 +18,14 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('body');
-            $table->text('image')->nullable();
             $table->string('id_category');
             $table->string('harga');
             $table->string('stock');
+            $table->text('image1');
+            $table->text('image2');
+            $table->text('image3')->nullable();
+            $table->text('image4')->nullable();
+            $table->text('image5')->nullable();
             $table->timestamps();
         });
     }

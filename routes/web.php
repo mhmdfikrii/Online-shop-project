@@ -65,6 +65,8 @@ Route::get('/tambah-produk', [ProductController::class, 'create'])->middleware('
 Route::post('/tambah-produk', [ProductController::class, 'store'])->middleware('admin');
 Route::get('/edit-produk/{slug}', [ProductController::class, 'edit'])->middleware('admin');
 Route::put('/edit-produk/{slug}', [ProductController::class, 'update'])->middleware('admin');
+Route::delete('/product_admin/{slug}', [ProductController::class, 'destroy'])->middleware('admin');
+Route::delete('/delete-image/{slug}', [ProductController::class, 'deleteimage'])->middleware('admin');
 
 
 // Category Product

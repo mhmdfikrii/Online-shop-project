@@ -39,7 +39,7 @@
 
                 <div class="h-24 rounded">
                     <label for="message" class="text-sm">Nama Produk</label>
-                    <input name="title" value="{{ old('title', $product->title) }}"  id="title" type="text" oninput="generateSlug()" required placeholder="Nama Produk yang dijual" class="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" />
+                    <input name="title" value="{{ old('title', $product->title) }}" id="title" type="text" oninput="generateSlug()" required placeholder="Nama Produk yang dijual" class="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900" />
                 </div>
 
                 <div class="h-24 rounded">
@@ -51,12 +51,12 @@
                     <div class="col-span-full sm:col-span-3">
                         <label for="kategori" class="text-sm">Kategori Produk</label>
                         <select name="id_category" id="id_category" required class="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900">
-                           <option value="" disabled>Pilih Kategori</option>
-                        @foreach ($categories as $category)
+                            <option value="" disabled>Pilih Kategori</option>
+                            @foreach ($categories as $category)
                             <option value="{{ $category->id }}" {{ old('id_category') == $category->id ? 'selected' : '' }}>
                                 {{ $category->name_category }}
                             </option>
-                        @endforeach
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -64,69 +64,101 @@
                 <div class="mb-3">
                     <label for="kategori" class="text-sm">Gambar Produk (Wajib Minimal 2 Gambar)</label>
                 </div>
-                <div class="flex overflow-x-auto gap-4">
-                    <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                        <label for="image1" class="text-sm flex justify-center items-center">Gambar Produk 1</label>
-                        <div class="absolute inset-0 flex justify-center items-center">     
-                            <input name="image1" id="image1" type="file" accept="image/*"  class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />            
-                        </div>
-                        
-                        <img id="preview1" src="{{ asset('storage/' . $product->image1) }}" class="-mt-5 w-full h-full rounded" alt="Preview Gambar">
-                        
-                    </div>
-                    <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                        <label for="image2" class="text-sm flex justify-center items-center">Gambar Produk 2</label>
-                        <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image2" id="image2" type="file"  class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
-                        </div>
-                        
-                        <img id="preview2" src="{{ asset('storage/' . $product->image2) }}" class="-mt-5 w-full h-full rounded" alt="Preview Gambar">
-                       
-                    </div>
+                <div class="overflow-x-auto">
+                    <div class="flex gap-4">
 
-                    <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                        <label for="image3" class="text-sm flex justify-center items-center">Gambar Produk 3</label>
-                        <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image3" id="image3" type="file" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                        <div>
+                            <div class="text-center">
+                                <label class="text-sm rounded-lg border border-white "></label>
+                            </div>
+                            <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
+                                <label for="image1" class="text-sm flex justify-center items-center">Gambar Produk 1</label>
+                                <div class="absolute inset-0 flex justify-center items-center">
+                                    <input name="image1" id="image1" type="file" accept="image/*" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                                </div>
+                                <img id="preview1" src="{{ asset('storage/' . $product->image1) }}" class="-mt-5 w-full h-full rounded" alt="Preview Gambar">
+                            </div>
                         </div>
 
-                        @if($product->image3)
-                        <img id="preview3" src="{{ asset('storage/' . $product->image3) }}" class="-mt-5 w-full h-full rounded">
-                        @else
-                        <img id="preview3" class="-mt-5 w-full h-full rounded hidden">
-                        @endif
-                    </div>
-                    
-                    <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                        <label for="image4" class="text-sm flex justify-center items-center">Gambar Produk 4</label>
-                        <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image4" id="image4" type="file" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                        <div>
+                            <div class="text-center">
+                                <label class="text-sm rounded-lg border border-white "></label>
+                            </div>
+                            <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
+                                <label for="image2" class="text-sm flex justify-center items-center">Gambar Produk 2</label>
+                                <div class="absolute inset-0 flex justify-center items-center">
+                                    <input name="image2" accept="image/*" id="image2" type="file" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                                </div>
+                                <img id="preview2" src="{{ asset('storage/' . $product->image2) }}" class="-mt-5 w-full h-full rounded" alt="Preview Gambar">
+                            </div>
                         </div>
 
-                        @if($product->image4)
-                        <img id="preview4" src="{{ asset('storage/' . $product->image4) }}" class="-mt-5 w-full h-full rounded">
-                        @else
-                        <img id="preview4" class="-mt-5 w-full h-full rounded hidden">
-                        @endif
-                    </div>
-                    <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                        <label for="image5" class="text-sm flex justify-center items-center">Gambar Produk 5</label>
-                        <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image5" id="image5" type="file" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                        <div>
+                            <div class="text-center">
+                                <div class="text-center">
+                                    <button class="delete-image-btn" type="button" data-image-id="{{ $product->id }}" data-image-field="image3"><i class="text-sm rounded-lg border bg-red-200 bi bi-trash"></i></button>
+                                </div>
+                            </div>
+                            <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
+                                <label for="image3" class="text-sm flex justify-center items-center">Gambar Produk 3</label>
+                                <div class="absolute inset-0 flex justify-center items-center">
+                                    <input name="image3" accept="image/*" id="image3" type="file" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                                </div>
+
+                                @if($product->image3)
+                                <img id="preview3" src="{{ asset('storage/' . $product->image3) }}" class="-mt-5 w-full h-full rounded">
+                                @else
+                                <img id="preview3" class="-mt-5 w-full h-full rounded hidden">
+                                @endif
+                            </div>
                         </div>
-                       
-                        @if($product->image5)
-                        <img id="preview5" src="{{ asset('storage/' . $product->image5) }}" class="-mt-5 w-full h-full rounded">
-                        @else
-                        <img id="preview5" class="-mt-5 w-full h-full rounded hidden">
-                        @endif
+
+                        <div>
+                            <div class="text-center">
+                                <div class="text-center">
+                                    <button class="delete-image-btn" type="button" data-image-id="{{ $product->id }}" data-image-field="image4"><i class="text-sm rounded-lg border bg-red-200 bi bi-trash"></i></button>
+                                </div>
+                            </div>
+                            <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
+                                <label for="image4" class="text-sm flex justify-center items-center">Gambar Produk 4</label>
+                                <div class="absolute inset-0 flex justify-center items-center">
+                                    <input name="image4" accept="image/*" id="image4" type="file" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                                </div>
+
+                                @if($product->image4)
+                                <img id="preview4" src="{{ asset('storage/' . $product->image4) }}" class="-mt-5 w-full h-full rounded">
+                                @else
+                                <img id="preview4" class="-mt-5 w-full h-full rounded hidden">
+                                @endif
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="text-center">
+                                <div class="text-center">
+                                    <button class="delete-image-btn" type="button" data-image-id="{{ $product->id }}" data-image-field="image5"><i class="text-sm rounded-lg border bg-red-200 bi bi-trash"></i></button>
+                                </div>
+                            </div>
+                            <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
+                                <label for="image5" class="text-sm flex justify-center items-center">Gambar Produk 5</label>
+                                <div class="absolute inset-0 flex justify-center items-center">
+                                    <input name="image5" accept="image/*" id="image5" type="file" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
+                                </div>
+
+                                @if($product->image5)
+                                <img id="preview5" src="{{ asset('storage/' . $product->image5) }}" class="-mt-5 w-full h-full rounded">
+                                @else
+                                <img id="preview5" class="-mt-5 w-full h-full rounded hidden">
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="rounded mb-4 mt-4">
                     <label for="message" class="text-sm">Keterangan Produk</label>
                     <div class="max-h-auto overflow-y-auto">
-                        <input id="body" type="hidden" value="{{ old('body', $product->body) }}"name="body" class="overflow-y-auto" />
+                        <input id="body" type="hidden" value="{{ old('body', $product->body) }}" name="body" class="overflow-y-auto" />
                         <trix-editor input="body" class="rounded-md overflow-y-auto"></trix-editor>
                     </div>
                 </div>
@@ -218,4 +250,40 @@
         input.value = `${formattedValue}`;
     }
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.delete-image-btn').click(function() {
+        var productId = $(this).data('image-id');
+        var imageField = $(this).data('image-field');
+        
+        // Konfirmasi penghapusan gambar
+        var confirmation = confirm('Apakah Anda yakin ingin menghapus gambar ini?');
+        
+        if (confirmation) {
+            $.ajax({
+                url: '/delete-image/' + productId,
+                type: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    imageField: imageField // Kirim nama kolom gambar
+                },
+                success: function(response) {
+                    alert('Gambar berhasil dihapus');
+                    location.reload(); // Reload halaman setelah penghapusan berhasil
+                },
+                error: function(xhr) {
+                    alert('Terjadi kesalahan saat menghapus gambar');
+                }
+            });
+        } else {
+            // Jika pengguna membatalkan penghapusan, tidak perlu melakukan reload
+            // alert('Penghapusan gambar dibatalkan');
+        }
+    });
+});
+</script>
+
+
 @endsection

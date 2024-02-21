@@ -209,14 +209,42 @@ class ProductController extends Controller
     }
 
 
-
-
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        // Hapus folder gambar terkait
+        $folderPath = 'Product-images/' . $product->KodeProduct;
+        Storage::deleteDirectory($folderPath);
+
+        // Hapus data produk
+        $product->delete();
+
+        return redirect('/product_admin')->with('success', 'Product berhasil dihapus');
+    }
+
+    public function deleteImage(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        // Get the image field to delete from the request
+        $imageField = $request->input('imageField');
+
+        // Check if the image field exists and if it's not null
+        if ($imageField && $product->$imageField) {
+            // Delete the selected image
+            Storage::delete($product->$imageField);
+
+            // Clear the reference to the image in the product model
+            $product->$imageField = null;
+            $product->save();
+
+            return response()->json(['success' => 'Gambar berhasil dihapus']);
+        }
+
+        return response()->json(['error' => 'Gagal menghapus gambar'], 400);
     }
 }

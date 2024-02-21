@@ -76,8 +76,6 @@ class AdminController extends Controller
 
             return redirect('/admin-account-scurity/' . auth()->user()->token)->with('success', 'Password Akun berhasil diganti.');
         } catch (\Exception $e) {
-            // ngambil alert fail berdasrkan error
-            // return redirect('/account-scurity/' . auth()->user()->token)->with('fail', 'Error: ' . $e->getMessage());
             return redirect('/admin-account-scurity/' . auth()->user()->token)->with('fail', 'Gagal Mengupdate Data, Silahkan Cek kembali password/email anda dengan benar');
         }
     }

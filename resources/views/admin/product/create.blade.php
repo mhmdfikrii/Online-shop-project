@@ -79,7 +79,7 @@
 
                 <div class="mb-3">
                     <label for="kategori" class="text-sm">Gambar Produk (Wajib Minimal 2 Gambar)</label>
-                </div>              
+                </div>
                 <div class="flex overflow-x-auto gap-4">
                     <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
                         <label for="image1" class="text-sm flex justify-center items-center">Gambar Produk 1</label>
@@ -100,7 +100,7 @@
                     <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
                         <label for="image3" class="text-sm flex justify-center items-center">Gambar Produk 3</label>
                         <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image3" id="image3" type="file" 
+                            <input name="image3" id="image3" type="file"
                                 class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                         </div>
                         <img id="preview3" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
@@ -108,7 +108,7 @@
                     <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
                         <label for="image4" class="text-sm flex justify-center items-center">Gambar Produk 4</label>
                         <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image4" id="image4" type="file" 
+                            <input name="image4" id="image4" type="file"
                                 class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                         </div>
                         <img id="preview4" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
@@ -116,7 +116,7 @@
                     <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
                         <label for="image5" class="text-sm flex justify-center items-center">Gambar Produk 5</label>
                         <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image5" id="image5" type="file" 
+                            <input name="image5" id="image5" type="file"
                                 class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                         </div>
                         <img id="preview5" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
@@ -195,7 +195,6 @@
 </script>
 
 
-
 <script>
     function generateSlug() {
         const titleInput = document.getElementById('title');
@@ -224,4 +223,7 @@
         input.value = `${formattedValue}`;
     }
 </script>
+
+
+
 @endsection

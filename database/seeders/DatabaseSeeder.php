@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\CategoryProduct;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
@@ -50,6 +51,11 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('user01'),
             'tgllahir' => '02/23/2000',
             'token' => Str::uuid(),
+        ]);
+
+        CategoryProduct::create([
+            'name_category' => 'Sepatu Olahraga',
+            'slug' => 'sepatu-olahraga'
         ]);
     }
 }

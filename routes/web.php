@@ -27,8 +27,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
 // Login
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/register', [LoginController::class, 'store'])->name('register');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -63,6 +63,9 @@ Route::put('/admin-account-scurity/{account}', [AdminController::class, 'AdminCh
 Route::get('/product_admin', [ProductController::class, 'index'])->middleware('admin');
 Route::get('/tambah-produk', [ProductController::class, 'create'])->middleware('admin');
 Route::post('/tambah-produk', [ProductController::class, 'store'])->middleware('admin');
+Route::get('/edit-produk/{slug}', [ProductController::class, 'edit'])->middleware('admin');
+Route::put('/edit-produk/{slug}', [ProductController::class, 'update'])->middleware('admin');
+
 
 // Category Product
 Route::get('/create-category', [CategoryProductController::class, 'index'])->middleware('admin');

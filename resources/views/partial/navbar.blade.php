@@ -32,7 +32,7 @@
     {{-- Logo --}}
     <a
       rel="noopener noreferrer"
-      href="#"
+      href="/"
       aria-label="Back to homepage"
       class="hidden lg:flex items-center p-2"
       id="Logo"

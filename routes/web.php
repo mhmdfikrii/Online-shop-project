@@ -3,13 +3,13 @@
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\CategoryProductController;
+use App\Http\Controllers\admin\ContentPromoController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\dashboard\AlamatController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\DetailUsersController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
-use App\Models\CategoryProduct;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 // Index
 Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::get('/view-product', [IndexController::class, 'ViewProduct']);
 
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -59,7 +60,7 @@ Route::put('/admin_details/{account}', [AdminController::class, 'updateAdmin'])-
 Route::get('/admin-account-scurity/{account}', [AdminController::class, 'ViewAdminChangePassword'])->middleware('admin');
 Route::put('/admin-account-scurity/{account}', [AdminController::class, 'AdminChangePassword'])->middleware('admin');
 
-// Product
+//Post Product
 Route::get('/product_admin', [ProductController::class, 'index'])->middleware('admin');
 Route::get('/tambah-produk', [ProductController::class, 'create'])->middleware('admin');
 Route::post('/tambah-produk', [ProductController::class, 'store'])->middleware('admin');
@@ -73,3 +74,9 @@ Route::delete('/delete-image/{slug}', [ProductController::class, 'deleteimage'])
 Route::get('/create-category', [CategoryProductController::class, 'index'])->middleware('admin');
 Route::post('/create-category', [CategoryProductController::class, 'store'])->middleware('admin');
 Route::delete('/create-category/{id}', [CategoryProductController::class, 'destroy'])->middleware('admin');
+
+// Content Promo
+Route::get('/konten-promo', [ContentPromoController::class, 'index'])->middleware('admin');
+Route::get('/add-content', [ContentPromoController::class, 'create'])->middleware('admin');
+Route::post('/add-content', [ContentPromoController::class, 'store'])->middleware('admin');
+Route::delete('/konten-promo/{id}', [ContentPromoController::class, 'destroy'])->middleware('admin');

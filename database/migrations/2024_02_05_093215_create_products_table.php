@@ -17,15 +17,15 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('title');
             $table->string('slug');
-            $table->string('body');
+            $table->text('body');
             $table->string('id_category');
             $table->string('harga');
             $table->string('stock');
-            $table->text('image1');
-            $table->text('image2');
-            $table->text('image3')->nullable();
-            $table->text('image4')->nullable();
-            $table->text('image5')->nullable();
+            $table->string('image1');
+            $table->string('image2');
+            $table->string('image3')->nullable();
+            $table->string('image4')->nullable();
+            $table->string('image5')->nullable();
             $table->timestamps();
         });
     }

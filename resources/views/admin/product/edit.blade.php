@@ -72,11 +72,12 @@
                                 <label class="text-sm rounded-lg border border-white "></label>
                             </div>
                             <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                                <label for="image1" class="text-sm flex justify-center items-center">Gambar Produk 1</label>
+                                <label for="image1" class="text-sm flex justify-center items-center mb-16">Gambar Produk 1</label>
+                                <i class="flex justify-center items-center text-2xl text-gray-400 bi bi-plus-circle"></i>
                                 <div class="absolute inset-0 flex justify-center items-center">
                                     <input name="image1" id="image1" type="file" accept="image/*" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                                 </div>
-                                <img id="preview1" src="{{ asset('storage/' . $product->image1) }}" class="-mt-5 w-full h-full rounded" alt="Preview Gambar">
+                                <img id="preview1" src="{{ asset('storage/' . $product->image1) }}" class="absolute top-0 left-0 w-full h-full rounded" alt="Preview Gambar" style="pointer-events: none;">
                             </div>
                         </div>
 
@@ -85,11 +86,12 @@
                                 <label class="text-sm rounded-lg border border-white "></label>
                             </div>
                             <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                                <label for="image2" class="text-sm flex justify-center items-center">Gambar Produk 2</label>
+                                <label for="image2" class="text-sm flex justify-center items-center mb-16">Gambar Produk 2</label>
+                                <i class="flex justify-center items-center text-2xl text-gray-400 bi bi-plus-circle"></i>
                                 <div class="absolute inset-0 flex justify-center items-center">
                                     <input name="image2" accept="image/*" id="image2" type="file" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                                 </div>
-                                <img id="preview2" src="{{ asset('storage/' . $product->image2) }}" class="-mt-5 w-full h-full rounded" alt="Preview Gambar">
+                                <img id="preview2" src="{{ asset('storage/' . $product->image2) }}" class="absolute top-0 left-0 w-full h-full rounded" alt="Preview Gambar" style="pointer-events: none;">
                             </div>
                         </div>
 
@@ -100,15 +102,16 @@
                                 </div>
                             </div>
                             <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                                <label for="image3" class="text-sm flex justify-center items-center">Gambar Produk 3</label>
+                                <label for="image3" class="text-sm flex justify-center items-center mb-16">Gambar Produk 3</label>
+                                <i class="flex justify-center items-center text-2xl text-gray-400 bi bi-plus-circle"></i>
                                 <div class="absolute inset-0 flex justify-center items-center">
                                     <input name="image3" accept="image/*" id="image3" type="file" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                                 </div>
 
                                 @if($product->image3)
-                                <img id="preview3" src="{{ asset('storage/' . $product->image3) }}" class="-mt-5 w-full h-full rounded">
+                                <img id="preview3" src="{{ asset('storage/' . $product->image3) }}" class="absolute top-0 left-0 w-full h-full rounded" style="pointer-events: none;">
                                 @else
-                                <img id="preview3" class="-mt-5 w-full h-full rounded hidden">
+                                <img id="preview3" class="absolute top-0 left-0 w-full h-full hidden rounded" style="pointer-events: none;">
                                 @endif
                             </div>
                         </div>
@@ -120,15 +123,16 @@
                                 </div>
                             </div>
                             <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                                <label for="image4" class="text-sm flex justify-center items-center">Gambar Produk 4</label>
+                                <label for="image4" class="text-sm flex justify-center items-center mb-16">Gambar Produk 4</label>
+                                <i class="flex justify-center items-center text-2xl text-gray-400 bi bi-plus-circle"></i>
                                 <div class="absolute inset-0 flex justify-center items-center">
                                     <input name="image4" accept="image/*" id="image4" type="file" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                                 </div>
 
                                 @if($product->image4)
-                                <img id="preview4" src="{{ asset('storage/' . $product->image4) }}" class="-mt-5 w-full h-full rounded">
+                                <img id="preview4" src="{{ asset('storage/' . $product->image4) }}" class="absolute top-0 left-0 w-full h-full rounded" style="pointer-events: none;">
                                 @else
-                                <img id="preview4" class="-mt-5 w-full h-full rounded hidden">
+                                <img id="preview4" class="absolute top-0 left-0 w-full h-full hidden rounded" style="pointer-events: none;">
                                 @endif
                             </div>
                         </div>
@@ -140,15 +144,16 @@
                                 </div>
                             </div>
                             <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                                <label for="image5" class="text-sm flex justify-center items-center">Gambar Produk 5</label>
+                                <label for="image5" class="text-sm flex justify-center items-center mb-16">Gambar Produk 5</label>
+                                <i class="flex justify-center items-center text-2xl text-gray-400 bi bi-plus-circle"></i>
                                 <div class="absolute inset-0 flex justify-center items-center">
                                     <input name="image5" accept="image/*" id="image5" type="file" class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                                 </div>
 
                                 @if($product->image5)
-                                <img id="preview5" src="{{ asset('storage/' . $product->image5) }}" class="-mt-5 w-full h-full rounded">
+                                <img id="preview5" src="{{ asset('storage/' . $product->image5) }}" class="absolute top-0 left-0 w-full h-full rounded" style="pointer-events: none;">
                                 @else
-                                <img id="preview5" class="-mt-5 w-full h-full rounded hidden">
+                                <img id="preview5" class="absolute top-0 left-0 w-full h-full hidden rounded" style="pointer-events: none;">
                                 @endif
                             </div>
                         </div>

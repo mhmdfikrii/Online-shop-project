@@ -82,49 +82,54 @@
                 </div>
                 <div class="flex overflow-x-auto gap-4">
                     <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                        <label for="image1" class="text-sm flex justify-center items-center">Gambar Produk 1</label>
+                        <label for="image1" class="text-sm flex justify-center items-center mb-16">Gambar Produk 1</label>
+                        <i class="flex justify-center items-center text-2xl text-gray-400 bi bi-plus-circle"></i>
                         <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image1" id="image1" type="file" required
+                            <input name="image1" id="image1" type="file" required accept="image/*"
                                 class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                         </div>
-                        <img id="preview1" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
+                        <img id="preview1" class="absolute top-0 left-0 w-full h-full hidden rounded" alt="Preview Gambar" style="pointer-events: none;">
                     </div>
                     <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                        <label for="image2" class="text-sm flex justify-center items-center">Gambar Produk 2</label>
+                        <label for="image2" class="text-sm flex justify-center items-center mb-16">Gambar Produk 2</label>
+                        <i class="flex justify-center items-center text-2xl text-gray-400 bi bi-plus-circle"></i>
                         <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image2" id="image2" type="file" required
+                            <input name="image2" id="image2" type="file" required accept="image/*"
                                 class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                         </div>
-                        <img id="preview2" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
+                        <img id="preview2" class="absolute top-0 left-0 w-full h-full hidden rounded" alt="Preview Gambar" style="pointer-events: none;">
                     </div>
                     <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                        <label for="image3" class="text-sm flex justify-center items-center">Gambar Produk 3</label>
+                        <label for="image3" class="text-sm flex justify-center items-center mb-16">Gambar Produk 3</label>
+                        <i class="flex justify-center items-center text-2xl text-gray-400 bi bi-plus-circle"></i>
                         <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image3" id="image3" type="file"
+                            <input name="image3" id="image3" type="file" accept="image/*"
                                 class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                         </div>
-                        <img id="preview3" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
+                        <img id="preview3" class="absolute top-0 left-0 w-full h-full hidden rounded" alt="Preview Gambar" style="pointer-events: none;">
                     </div>
                     <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                        <label for="image4" class="text-sm flex justify-center items-center">Gambar Produk 4</label>
+                        <label for="image4" class="text-sm flex justify-center items-center mb-16">Gambar Produk 4</label>
+                        <i class="flex justify-center items-center text-2xl text-gray-400 bi bi-plus-circle"></i>
                         <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image4" id="image4" type="file"
+                            <input name="image4" id="image4" type="file" accept="image/*"
                                 class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                         </div>
-                        <img id="preview4" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
+                        <img id="preview4" class="absolute top-0 left-0 w-full h-full hidden rounded" alt="Preview Gambar" style="pointer-events: none;">
                     </div>
                     <div class="h-48 w-48 rounded border border-gray-300 flex-shrink-0 relative">
-                        <label for="image5" class="text-sm flex justify-center items-center">Gambar Produk 5</label>
+                        <label for="image5" class="text-sm flex justify-center items-center mb-16">Gambar Produk 5</label>
+                        <i class="flex justify-center items-center text-2xl text-gray-400 bi bi-plus-circle"></i>
                         <div class="absolute inset-0 flex justify-center items-center">
-                            <input name="image5" id="image5" type="file"
+                            <input name="image5" id="image5" type="file" accept="image/*"
                                 class="w-full h-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 opacity-0 absolute" />
                         </div>
-                        <img id="preview5" class="-mt-5 w-full h-full hidden rounded" alt="Preview Gambar">
+                        <img id="preview5" class="absolute top-0 left-0 w-full h-full hidden rounded" alt="Preview Gambar" style="pointer-events: none;">
                     </div>
                 </div>
 
                 <div class="rounded mb-4 mt-4">
-                    <label for="message" class="text-sm">Keterangan Produk</label>
+                    <label for="message" class="text-sm">Keterangan Test</label>
                     <div class="max-h-auto overflow-y-auto">
                         <input id="body" type="hidden" name="body" class="overflow-y-auto" />
 
